@@ -1,4 +1,9 @@
 <?php
+require __DIR__.'/vendor/autoload.php';
+use app\models\OpenExchange;
+
+$a = new OpenExchange();
+
 const OPEN_EXCHANGE_APP_ID = 'a9e5e1c064a949bf94337815d8198da1';
 const BASE_CURRENCY        = 'USD';
 
