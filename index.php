@@ -2,20 +2,15 @@
 require __DIR__.'/vendor/autoload.php';
 
 use app\models\OpenExchange as Currency;
+use app\controllers\HomeController;
 
-$currency = new Currency;
+$currency       = new Currency;
+$homeController = new HomeController();
 
 if (isset($_GET['action'])) {
     switch(($_GET['action'])) {
         case 'convert':
-            $currencyTotal     = $_POST['currencyTotal'];
-            $currencyToConvert = $_POST['currencyToConvert'];
-
-            $total = round($currency->convertCurrency($currencyTotal, $currencyToConvert), 2);
-
-            echo json_encode([
-                'total' => $total
-            ]);
+            $homeController->actionConvertCurrency();
             break;
     }
 
@@ -99,7 +94,7 @@ $currencies    = $currency->getCurrencies();
             <p>Data may be out of date. We calculate by new rates, that we get after submit data</p>
             <?foreach($exchangeRates as $sCode => $val):?>
                 <div>
-                    1$ = <?= $val?> <?= $currencies[$sCode]?>
+                    1$ = <?= $val?> <?= $currencies[$sCode]?>(<?= $sCode?>)
                 </div>
             <?endforeach;?>
         </div>
