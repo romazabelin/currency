@@ -3,7 +3,7 @@ require __DIR__.'/vendor/autoload.php';
 
 use app\models\OpenExchange as Currency;
 
-$currency      = new Currency;
+$currency = new Currency;
 
 if (isset($_GET['action'])) {
     switch(($_GET['action'])) {
@@ -117,31 +117,37 @@ $currencies    = $currency->getCurrencies();
                 <h2>What is Netpeak</h2>
                 <h5>Netpeak is an innovative payment network and a new kind of money.</h5>
 
-                <div>
-                    <div>
+                <div class="row mb-2">
+                    <div class="col-md-4">
                         <label>Enter amount of $</label>
-                        <input type="text" class="form-control-sm numeric-only" id="base-currency-total">
                     </div>
-
-                   <div>
-                       <label>Select currency</label>
-                       <select class="form-control-sm" id="currency-to-convert">
-                           <?foreach($currencies as $currencyShortCode => $currencyName):?>
-                               <option value="<?= $currencyShortCode?>">
-                                   <?= $currencyName?>(<?= $currencyShortCode?>)
-                               </option>
-                           <?endforeach;?>
-                       </select>
-                   </div>
-
-                    <div id="exchange-currency-result">
-                        <label>You can get</label>
-                        <span id="total-result" class="font-weight-bold"></span>
-                        <span id="currency-short-code" class="font-weight-bold"></span>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control numeric-only" id="base-currency-total">
                     </div>
-
-                    <button class="site-btn sb-gradients" id="btn-convert-currency">Convert</button>
                 </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-4">
+                        <label>Select currency</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select class="form-control" id="currency-to-convert">
+                            <?foreach($currencies as $currencyShortCode => $currencyName):?>
+                                <option value="<?= $currencyShortCode?>">
+                                    <?= $currencyName?>(<?= $currencyShortCode?>)
+                                </option>
+                            <?endforeach;?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-2" id="exchange-currency-result">
+                    <label>You can get</label>
+                    <span id="total-result" class="font-weight-bold"></span>
+                    <span id="currency-short-code" class="font-weight-bold"></span>
+                </div>
+
+                <button class="site-btn sb-gradients" id="btn-convert-currency">Convert</button>
             </div>
         </div>
         <div class="about-img">
