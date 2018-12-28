@@ -1,27 +1,11 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
-use app\models\OpenExchange;
 
-$a = new OpenExchange();
+use app\models\OpenExchange as Currency;
 
-const OPEN_EXCHANGE_APP_ID = 'a9e5e1c064a949bf94337815d8198da1';
-const BASE_CURRENCY        = 'USD';
-
-$currenciesFromApi = json_decode(file_get_contents('https://openexchangerates.org/api/currencies.json'));
-//TODO: uncomment
-//$baseCurrencyRates = json_decode(file_get_contents('https://openexchangerates.org/api/latest.json?app_id=' . OPEN_EXCHANGE_APP_ID . '&base=' . BASE_CURRENCY));
-//foreach($baseCurrencyRates->rates as $shortCode => $currencyRate) {
-//    $currenciesRates[$shortCode] = $currencyRate;
-//}
-$currenciesRates = [
-    'AED' => 3.67275,
-    'AFN' => 75.349867,
-    'ALL' => 107.8
-];
-
-foreach($currenciesFromApi as $currencyShortCode => $currencyName) {
-    $currencies[$currencyShortCode] = $currencyName;
-}
+$currency      = new Currency;
+$exchangeRates = $currency->getExchangeRates();
+$currencies    = $currency->getCurrencies();
 ?>
 
 <head>
@@ -94,7 +78,7 @@ foreach($currenciesFromApi as $currencyShortCode => $currencyName) {
         <div class="section-title text-center">
             <h2>Exchange rates</h2>
             <p>Data may be out of date. We calculate by new rates, that we get after submit data</p>
-            <?foreach($currenciesRates as $sCode => $val):?>
+            <?foreach($exchangeRates as $sCode => $val):?>
                 <div>
                     1$ = <?= $val?> <?= $currencies[$sCode]?>
                 </div>

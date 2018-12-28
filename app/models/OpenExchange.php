@@ -2,4 +2,42 @@
 namespace app\models;
 
 class OpenExchange implements iCurrency
-{}
+{
+    protected static $apiUrl       = 'a9e5e1c064a949bf94337815d8198da1';
+    protected static $baseCurrency = 'USD';
+    
+    /**
+     * Implement getCurrencies() method
+     */
+    public function getCurrencies()
+    {
+        $currenciesFromApi = json_decode(file_get_contents('https://openexchangerates.org/api/currencies.json'));
+
+        foreach($currenciesFromApi as $currencyShortCode => $currencyName) {
+            $currencies[$currencyShortCode] = $currencyName;
+        }
+
+        return $currencies;
+    }
+
+    /**
+     * Implement getExchangeRates() method.
+     */
+    public function getExchangeRates()
+    {
+        //TODO: uncomment
+//        $baseCurrencyRates = json_decode(file_get_contents('https://openexchangerates.org/api/latest.json?app_id=' . self::$apiUrl . '&base=' . self::$baseCurrency));
+//
+//        foreach($baseCurrencyRates->rates as $shortCode => $currencyRate) {
+//            $exchangeRates[$shortCode] = $currencyRate;
+//        }
+
+        $exchangeRates = [
+            'AED' => 3.67275,
+            'AFN' => 75.349867,
+            'ALL' => 107.8
+        ];
+
+        return $exchangeRates;
+    }
+}
