@@ -25,18 +25,11 @@ class OpenExchange implements iCurrency
      */
     public function getExchangeRates()
     {
-        //TODO: uncomment
-//        $baseCurrencyRates = json_decode(file_get_contents('https://openexchangerates.org/api/latest.json?app_id=' . self::$apiUrl . '&base=' . self::$baseCurrency));
-//
-//        foreach($baseCurrencyRates->rates as $shortCode => $currencyRate) {
-//            $exchangeRates[$shortCode] = $currencyRate;
-//        }
+        $baseCurrencyRates = json_decode(file_get_contents('https://openexchangerates.org/api/latest.json?app_id=' . self::$apiUrl . '&base=' . self::$baseCurrency));
 
-        $exchangeRates = [
-            'AED' => 3.67275,
-            'AFN' => 75.349867,
-            'ALL' => 107.8
-        ];
+        foreach($baseCurrencyRates->rates as $shortCode => $currencyRate) {
+            $exchangeRates[$shortCode] = $currencyRate;
+        }
 
         return $exchangeRates;
     }

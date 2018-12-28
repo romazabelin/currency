@@ -90,15 +90,19 @@ $currencies    = $currency->getCurrencies();
 <section class="blog-section spad">
     <div class="container">
         <div class="section-title text-center">
-            <h2>Exchange rates</h2>
-            <p>Data may be out of date. We calculate by new rates, that we get after submit data</p>
-            <?foreach($exchangeRates as $sCode => $val):?>
-                <div>
-                    1$ = <?= $val?> <?= $currencies[$sCode]?>(<?= $sCode?>)
+            <div class="accordion" id="accordionExample">
+                <a href="#" class="display-4" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Show/Hide Exchange rates
+                </a>
+                <p>Data may be out of date. We calculate by new rates, that we get after submit data</p>
+                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                    <?foreach($exchangeRates as $sCode => $val):?>
+                        <div>
+                            1$ = <?= $val?> <?= $currencies[$sCode]?>(<?= $sCode?>)
+                        </div>
+                    <?endforeach;?>
                 </div>
-            <?endforeach;?>
-        </div>
-        <div class="row">
+            </div>
         </div>
     </div>
 </section>
@@ -203,6 +207,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!--====== Javascripts & Jquery ======-->
 <script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="assets/js/plugins/numeric-only.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/main.js"></script>
