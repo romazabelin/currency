@@ -4,6 +4,24 @@ require __DIR__.'/vendor/autoload.php';
 use app\models\OpenExchange as Currency;
 
 $currency      = new Currency;
+
+if (isset($_GET['action'])) {
+    switch(($_GET['action'])) {
+        case 'convert':
+            $currencyTotal     = $_POST['currencyTotal'];
+            $currencyToConvert = $_POST['currencyToConvert'];
+
+            $total = round($currency->convertCurrency($currencyTotal, $currencyToConvert), 2);
+
+            echo json_encode([
+                'total' => $total
+            ]);
+            break;
+    }
+
+    return true;
+}
+
 $exchangeRates = $currency->getExchangeRates();
 $currencies    = $currency->getCurrencies();
 ?>

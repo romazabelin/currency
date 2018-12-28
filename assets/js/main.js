@@ -38,11 +38,10 @@ $(window).on('load', function() {
         }
 
         $.ajax({
-            url: '/app/actions/convert.php',
+            url: 'index.php?action=convert',
             type: 'post',
             async: true,
             data: {
-                convert: true,
                 currencyTotal: currencyTotal,
                 currencyToConvert: currencyToConvert
 
