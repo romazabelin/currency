@@ -51,7 +51,11 @@ $(window).on('load', function() {
                 $(".loader").fadeIn("slow");
                 $("#preloder").fadeIn("slow");
             },
-            success: function() {
+            success: function(data) {
+                var parseData = JSON.parse(data);
+                $('#total-result').html(parseData.total);
+                $('#currency-short-code').html(currencyToConvert);
+                $('#exchange-currency-result').fadeIn('slow');
             },
             complete: function() {
                 $(".loader").fadeOut();

@@ -24,6 +24,7 @@ $currencies    = $currency->getCurrencies();
     <link rel="stylesheet" href="assets/css/animate.css"/>
     <link rel="stylesheet" href="assets/css/owl.carousel.css"/>
     <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="stylesheet" href="assets/css/custom.css"/>
 
 
     <!--[if lt IE 9]>
@@ -114,6 +115,12 @@ $currencies    = $currency->getCurrencies();
                            <?endforeach;?>
                        </select>
                    </div>
+
+                    <div id="exchange-currency-result">
+                        <label>You can get</label>
+                        <span id="total-result" class="font-weight-bold"></span>
+                        <span id="currency-short-code" class="font-weight-bold"></span>
+                    </div>
 
                     <button class="site-btn sb-gradients" id="btn-convert-currency">Convert</button>
                 </div>
