@@ -106,7 +106,7 @@ $currencies    = $currency->getCurrencies();
 
                    <div>
                        <label>Select currency</label>
-                       <select class="form-control-sm">
+                       <select class="form-control-sm" id="currency-to-convert">
                            <?foreach($currencies as $currencyShortCode => $currencyName):?>
                                <option value="<?= $currencyShortCode?>">
                                    <?= $currencyName?>(<?= $currencyShortCode?>)

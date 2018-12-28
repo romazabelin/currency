@@ -13,7 +13,7 @@ $(window).on('load', function() {
 	/*------------------
 		Preloder
 	--------------------*/
-	$(".loader").fadeOut(); 
+	$(".loader").fadeOut();
 	$("#preloder").delay(400).fadeOut("slow");
 
 });
@@ -25,13 +25,39 @@ $(window).on('load', function() {
      */
     $('.numeric-only').ForceNumericOnly();
 
+    /**
+     * call to server for exchange rates
+     */
     $('body').on('click', '#btn-convert-currency', function() {
-        var currencyTotal = $('#base-currency-total').val();
+        var currencyTotal     = $('#base-currency-total').val();
+        var currencyToConvert = $('#currency-to-convert option:selected').val();
 
         if (!currencyTotal) {
             alert('Please, fill input');
             return false;
         }
+
+        $.ajax({
+            url: '/app/actions/convert.php',
+            type: 'post',
+            async: true,
+            data: {
+                convert: true,
+                currencyTotal: currencyTotal,
+                currencyToConvert: currencyToConvert
+
+            },
+            beforeSend: function() {
+                $(".loader").fadeIn("slow");
+                $("#preloder").fadeIn("slow");
+            },
+            success: function() {
+            },
+            complete: function() {
+                $(".loader").fadeOut();
+                $("#preloder").delay(400).fadeOut("slow");
+            }
+        })
     })
 
 	/*------------------
