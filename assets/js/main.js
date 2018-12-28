@@ -20,6 +20,20 @@ $(window).on('load', function() {
 
 (function($) {
 
+    /**
+     * only integers allow in input
+     */
+    $('.numeric-only').ForceNumericOnly();
+
+    $('body').on('click', '#btn-convert-currency', function() {
+        var currencyTotal = $('#base-currency-total').val();
+
+        if (!currencyTotal) {
+            alert('Please, fill input');
+            return false;
+        }
+    })
+
 	/*------------------
 		Navigation
 	--------------------*/

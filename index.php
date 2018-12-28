@@ -101,7 +101,7 @@ $currencies    = $currency->getCurrencies();
                 <div>
                     <div>
                         <label>Enter amount of $</label>
-                        <input type="number" class="form-control-sm">
+                        <input type="text" class="form-control-sm numeric-only" id="base-currency-total">
                     </div>
 
                    <div>
@@ -115,7 +115,7 @@ $currencies    = $currency->getCurrencies();
                        </select>
                    </div>
 
-                    <button class="site-btn sb-gradients">Convert</button>
+                    <button class="site-btn sb-gradients" id="btn-convert-currency">Convert</button>
                 </div>
             </div>
         </div>
@@ -177,6 +177,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!--====== Javascripts & Jquery ======-->
 <script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/plugins/numeric-only.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
